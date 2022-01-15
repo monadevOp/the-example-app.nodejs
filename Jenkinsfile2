@@ -8,15 +8,10 @@ pipeline {
        stage ("cloning") {
             steps{
                 echo "cloning"
-               sh "git clone https://github.com/monadevOp/the-example-app.nodejs.git"
+               sh "git clone https://github.com/contentful/the-example-app.nodejs.git"
                  }
             }
        
-       stage ("build") {
-        steps {
-        sh ' docker build -t mona88/nodeapp_test:latest . '
-              }
-              }
-        }
+       
        
 }
