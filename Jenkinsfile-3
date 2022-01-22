@@ -1,11 +1,12 @@
 pipeline {
     agent { dockerfile true }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-                sh 'npm --version'
+    stages{
+        stage ("cloning") {
+            steps{
+                echo "cloning"
+               sh "git clone https://github.com/monadevOp/the-example-app.nodejs.git"
             }
         }
-    }
+        
+        
 }
