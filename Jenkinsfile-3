@@ -1,21 +1,34 @@
 pipeline {
     agent {
-       docker { 
-               image 'node:9'
-               label 'docker'
-               }
-          }
+       docker any
     
     stages{
-        
+        stage ("cloning") {
+            steps{
+                echo "cloning"
+               sh "git clone https://github.com/contentful/the-example-app.nodejs.git"
+            }
+        }
         
         stage ("Install dependenciess"){
+        docker {
+                    image 'node:9'
+                   
+                    reuseNode true
+                }
+            }
           steps{
                echo "installing dependencies"
                 sh "npm i npm@latest -g"
                 sh "cd the-example-app.nodejs && npm install"
            }
       }
+      stage ("Deploy"){
+            steps{
+                echo "start project"
+                sh "cd the-example-app.nodejs && npm run start:dev &"
+            }
+        }
         
         }
         
