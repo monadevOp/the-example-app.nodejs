@@ -1,7 +1,7 @@
 pipeline {
     agent {
        docker { 
-               dockerfile true
+               image node:9
                
                }
           }
