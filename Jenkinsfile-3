@@ -7,6 +7,6 @@ pipeline {
                sh "git clone https://github.com/monadevOp/the-example-app.nodejs.git"
             }
         }
-        
+        }
         
 }
