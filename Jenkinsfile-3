@@ -11,6 +11,7 @@ pipeline {
         }
         
         stage ("Install dependenciess"){
+        agent {
         docker {
                     image 'node:9'
                    
