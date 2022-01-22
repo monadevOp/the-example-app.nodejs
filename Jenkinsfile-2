@@ -1,7 +1,6 @@
 
 pipeline {
-    agent any
-    tools {nodejs "Node-16.13"}
+    agent {image 'nodeimage:1.0'}
     
     stages{
         stage ("cloning") {
