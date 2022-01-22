@@ -7,12 +7,7 @@ pipeline {
           }
     
     stages{
-        stage ("cloning") {
-            steps{
-                echo "cloning"
-               sh "git clone https://github.com/monadevOp/the-example-app.nodejs.git"
-            }
-        }
+        
         
         stage ("Install dependenciess"){
           steps{
