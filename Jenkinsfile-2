@@ -1,7 +1,7 @@
 
 pipeline {
     agent any
-    tools {nodejs "nodejs"}
+    tools {nodejs "Node-16.13"}
     
     stages{
         stage ("cloning") {
