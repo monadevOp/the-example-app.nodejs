@@ -1,6 +1,7 @@
 
 pipeline {
-    agent {docker {image 'nodeimage:1.0'} }
+    agent {docker
+    {image 'node:9'} }
     
     stages{
         stage ("cloning") {
