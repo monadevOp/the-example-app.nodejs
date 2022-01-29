@@ -2,10 +2,11 @@ pipeline {
     agent any
     
     stages{
-        stage ("cloning") {
+        stage ("checkout") {
             steps{
-                echo "cloning"
-               sh "git  https://github.com/monadevOp/the-example-app.nodejs.git"
+                echo "checkout"
+               checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/monadevOp/the-example-app.nodejs.git']]])
+
             }
         }
         
