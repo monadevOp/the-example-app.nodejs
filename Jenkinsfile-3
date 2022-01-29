@@ -15,7 +15,7 @@ pipeline {
         docker {
                     image 'node:9'
                    
-                    reuseNode true
+    
                 }
             }
           steps{
