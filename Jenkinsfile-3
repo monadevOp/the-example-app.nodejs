@@ -41,7 +41,7 @@ pipeline {
             steps{
                 echo "verify"
                 sh " apk --no-cache add curl"
-                sh "curl http://localhost:3000 &" 
+                sh "curl http://localhost:3000 " 
             }
         }
         
