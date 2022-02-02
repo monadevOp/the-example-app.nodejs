@@ -26,6 +26,8 @@ pipeline {
                sh "npm i npm@latest -g"
               
                 sh " cd the-example-app.nodejs && npm install"
+                sh "node -v "
+                sh "npm -v"
            }
       }
       stage ("Deploy"){
