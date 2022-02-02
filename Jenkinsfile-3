@@ -13,7 +13,8 @@ pipeline {
         stage ("checkout") {
             steps{
                 echo "checkout"
-              sh "clone  https://github.com/monadevOp/the-example-app.nodejs.git"
+              checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/monadevOp/the-example-app.nodejs.git']]])
+
 
             }
         }
