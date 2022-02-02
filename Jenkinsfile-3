@@ -13,6 +13,7 @@ pipeline {
         stage ("checkout") {
             steps{
                 echo "checkout"
+                sh "apk add git"
              sh "git clone https://github.com/monadevOp/the-example-app.nodejs.git"
                  
 
