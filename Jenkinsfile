@@ -1,34 +1,48 @@
 pipeline {
-    agent any
-    tools {nodejs "nodejs"}
+    agent  { docker { image 'node:latest'
+                     args ' -u root -p 3000:3000'
+            }      }
+               
+    
     
     stages{
-        stage ("cloning") {
+        stage ("checkout") {
             steps{
-                echo "cloning"
-               sh "git clone https://github.com/contentful/the-example-app.nodejs.git"
+                echo "checkout"
+               
+                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/monadevOp/the-example-app.nodejs.git']]])
+
+                 }
             }
-        }
-        stage ("Install dependenciess"){
+       
+        stage ("Install dependencies"){
             steps{
                 echo "installing dependencies"
-                sh "npm i npm@latest -g"
-                sh "cd the-example-app.nodejs && npm install"
+               
+              sh "npm i npm@latest -g"
+               sh " npm install"
+               sh "npm -v"
+               sh"node -v"
             }
         }
+       
         stage ("Deploy"){
             steps{
-                echo "start project"
-                sh "cd the-example-app.nodejs && npm run start:dev &"
+                echo "test"
+                sh "npm run start:dev & " 
             }
         }
-        stage ("Test"){
+      
+      stage ("Test"){
             steps{
                 echo "verify"
-                sh "curl http://localhost:3000" 
+                sh "curl http://localhost:3000 &" 
             }
         }
-
-    }
+        
     
+        
+    }
+        
+        
 }
