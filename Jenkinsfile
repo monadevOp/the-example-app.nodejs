@@ -1,3 +1,4 @@
+#use-node-latest
 pipeline {
     agent  { docker { image 'node:latest'
                      args ' -u root -p 3000:3000'
@@ -20,7 +21,7 @@ pipeline {
                 echo "installing dependencies"
                
               sh "npm i npm@latest -g"
-               sh " npm install"
+               sh " cd the-example-app.nodejs && npm install"
                sh "npm -v"
                sh"node -v"
             }
@@ -29,7 +30,7 @@ pipeline {
         stage ("Deploy"){
             steps{
                 echo "test"
-                sh "npm run start:dev & " 
+                sh "cd the-example-app.nodejs && npm run start:dev & " 
             }
         }
       
