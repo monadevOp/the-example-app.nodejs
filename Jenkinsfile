@@ -11,7 +11,7 @@ pipeline {
         stage ("checkout") {
             steps{
                 echo "checkout"         
-                sh "git clone https://github.com/mondevOp/the-example-app.nodejs.git"
+                sh "git clone https://github.com/monadevOp/the-example-app.nodejs.git"
                  }
             }
        
