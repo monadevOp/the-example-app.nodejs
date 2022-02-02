@@ -1,4 +1,4 @@
-#use-node-latest
+
 pipeline {
     agent  { docker { image 'node:latest'
                      args ' -u root -p 3000:3000'
@@ -11,8 +11,8 @@ pipeline {
             steps{
                 echo "checkout"
                
-                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/monadevOp/the-example-app.nodejs.git']]])
-
+                  sh "git clone https://github.com/contentful/the-example-app.nodejs.git"
+                 
                  }
             }
        
@@ -39,11 +39,11 @@ pipeline {
                 echo "verify"
                 sh "curl http://localhost:3000 &" 
             }
-        }
-        
-    
-        
+      }
     }
-        
+     post { always {
+         cleanWs()
+     }   
+     }     
         
 }
