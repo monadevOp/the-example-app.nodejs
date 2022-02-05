@@ -1,8 +1,10 @@
 
 pipeline {
-    agent  { docker { image 'node:latest'
-                     args ' -u root -p 3000:3000'
-                    }  }
+    agent  { 
+        docker { image 'node:latest'
+                 args ' -u root -p 3000:3000'
+               } 
+           }
                
     
     
@@ -32,7 +34,7 @@ pipeline {
             }
         }
       
-      stage ("Test"){
+        stage ("Test"){
             steps{
                 echo "verify"
                 sh "curl http://localhost:3000 " 
