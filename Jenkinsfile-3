@@ -1,50 +1,51 @@
 pipeline {
     agent {
         docker {
-                    image 'node:16.13-alpine'
+                   image 'node:16.13-alpine'
                    args ' -u root -p 3000:3000'
-    
-                }}
-             environment {  
-       HOME = '.'
-  }
+                }
+           }
+       
+       environment {  
+                      HOME = '.'
+                     }
     
     stages{
-        stage ("checkout") {
+       
+       stage ("checkout") {
             steps{
                 echo "checkout"
                 sh "apk add git"
              sh "git clone https://github.com/monadevOp/the-example-app.nodejs.git"
-                 
-
-            }
-        }
-        
-        stage ("Install dependenciess"){
-        
-            
-          steps{
-               echo "installing dependencies"
-               sh "npm i npm@latest -g"
-              
-                sh " cd the-example-app.nodejs && npm install"
-                sh "node -v "
-                sh "npm -v"
+                }
            }
-      }
-      stage ("Deploy"){
+        
+       
+       stage ("Install dependenciess"){
+        
+              steps {
+               echo "installing dependencies"
+               sh "npm i npm@latest -g "
+               sh " cd the-example-app.nodejs && npm install"
+               sh "node -v "
+               sh "npm -v"
+               }
+        }
+     
+     stage ("Deploy"){
             steps{
                 echo "start project"
                 sh " cd the-example-app.nodejs && npm run start:dev &"
+               }
             }
-        }
-        stage ("Test"){
+      
+      stage ("Test"){
             steps{
                 echo "verify"
                 sh " apk --no-cache add curl"
                 sh "curl http://localhost:3000 " 
-            }
-        }
+                }
+          }
         
         }
      post { always {
